@@ -1,0 +1,33 @@
+{
+    "name": "siganushka/order-contracts",
+    "description": "A set of abstractions for order.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "siganushka",
+            "email": "siganushka@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2.5",
+        "doctrine/collections": "^1.6"
+    },
+    "require-dev": {
+        "symfony/phpunit-bridge": "^5.3",
+        "friendsofphp/php-cs-fixer": "^3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Siganushka\\Contracts\\Order\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Siganushka\\Contracts\\Order\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
