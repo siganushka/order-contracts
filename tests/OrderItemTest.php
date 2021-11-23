@@ -12,7 +12,7 @@ use Siganushka\Contracts\Order\Tests\Fixtures\Variant;
  * @internal
  * @coversNothing
  */
-final class OrderItemTraitTest extends TestCase
+final class OrderItemTest extends TestCase
 {
     /**
      * @dataProvider validItemProvider

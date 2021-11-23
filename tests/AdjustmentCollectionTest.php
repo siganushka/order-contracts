@@ -12,7 +12,7 @@ use Siganushka\Contracts\Order\Tests\Fixtures\AdjustmentCollection;
  * @internal
  * @coversNothing
  */
-final class AdjustmentCollectionTraitTest extends TestCase
+final class AdjustmentCollectionTest extends TestCase
 {
     /**
      * @dataProvider getMockAdjustments

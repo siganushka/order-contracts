@@ -1,6 +1,6 @@
 # Order Contracts
 
-A set of abstractions for order.
+A set of abstractions for order struct.
 
 ### Installation
 

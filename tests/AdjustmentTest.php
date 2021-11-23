@@ -11,7 +11,7 @@ use Siganushka\Contracts\Order\Tests\Fixtures\Adjustment;
  * @internal
  * @coversNothing
  */
-final class AdjustmentTraitTest extends TestCase
+final class AdjustmentTest extends TestCase
 {
     public function testAll(): void
     {

@@ -11,7 +11,7 @@ use Siganushka\Contracts\Order\Tests\Fixtures\Variant;
  * @internal
  * @coversNothing
  */
-final class VariantTraitTest extends TestCase
+final class VariantTest extends TestCase
 {
     /**
      * @dataProvider validPriceProvider
@@ -44,7 +44,7 @@ final class VariantTraitTest extends TestCase
             [0, 0],
             [16, 16],
             [65535, 65535],
-            [PHP_INT_MAX, PHP_INT_MAX],
+            [\PHP_INT_MAX, \PHP_INT_MAX],
         ];
     }
 }
