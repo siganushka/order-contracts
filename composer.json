@@ -1,6 +1,6 @@
 {
     "name": "siganushka/order-contracts",
-    "description": "A set of abstractions for order.",
+    "description": "A set of abstractions for order struct.",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -14,8 +14,7 @@
         "doctrine/collections": "^1.6"
     },
     "require-dev": {
-        "symfony/phpunit-bridge": "^5.3",
-        "friendsofphp/php-cs-fixer": "^3.2"
+        "symfony/phpunit-bridge": "^5.2"
     },
     "autoload": {
         "psr-4": {
