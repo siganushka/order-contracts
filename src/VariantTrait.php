@@ -6,7 +6,7 @@ namespace Siganushka\Contracts\Order;
 
 trait VariantTrait
 {
-    private $price;
+    private ?int $price = null;
 
     public function getPrice(): ?int
     {

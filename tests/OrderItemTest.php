@@ -8,18 +8,14 @@ use PHPUnit\Framework\TestCase;
 use Siganushka\Contracts\Order\Tests\Fixtures\OrderItem;
 use Siganushka\Contracts\Order\Tests\Fixtures\Variant;
 
-/**
- * @internal
- * @coversNothing
- */
 final class OrderItemTest extends TestCase
 {
     /**
      * @dataProvider validItemProvider
      *
-     * @param mixed $price
-     * @param mixed $quantity
-     * @param mixed $subtotal
+     * @param int $price
+     * @param int $quantity
+     * @param int $subtotal
      */
     public function testAll($price, $quantity, $subtotal): void
     {
@@ -50,7 +46,10 @@ final class OrderItemTest extends TestCase
         $item->setQuantity(-1);
     }
 
-    public function validItemProvider()
+    /**
+     * @return array<int, array<int>>
+     */
+    public function validItemProvider(): array
     {
         return [
             [0, 3, 0],

@@ -6,9 +6,9 @@ namespace Siganushka\Contracts\Order;
 
 trait OrderItemTrait
 {
-    private $variant;
-    private $unitPrice;
-    private $quantity;
+    private ?VariantInterface $variant = null;
+    private ?int $unitPrice = null;
+    private ?int $quantity = null;
 
     public function getVariant(): ?VariantInterface
     {
@@ -19,7 +19,7 @@ trait OrderItemTrait
     {
         $this->variant = $variant;
 
-        if ($this->variant) {
+        if ($variant instanceof VariantInterface) {
             $this->unitPrice = $variant->getPrice();
         }
 

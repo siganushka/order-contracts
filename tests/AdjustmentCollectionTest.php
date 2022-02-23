@@ -8,10 +8,6 @@ use PHPUnit\Framework\TestCase;
 use Siganushka\Contracts\Order\Tests\Fixtures\Adjustment;
 use Siganushka\Contracts\Order\Tests\Fixtures\AdjustmentCollection;
 
-/**
- * @internal
- * @coversNothing
- */
 final class AdjustmentCollectionTest extends TestCase
 {
     /**
@@ -36,7 +32,10 @@ final class AdjustmentCollectionTest extends TestCase
         static::assertCount(\count($arguments), $collection->getAdjustments());
     }
 
-    public function getMockAdjustments()
+    /**
+     * @return array<int, array<?int>>
+     */
+    public function getMockAdjustments(): array
     {
         return [
             [-10, 5, 5, -30, -30],

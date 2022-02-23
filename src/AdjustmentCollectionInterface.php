@@ -15,5 +15,8 @@ interface AdjustmentCollectionInterface
 {
     public function getAdjustmentsTotal(): int;
 
+    /**
+     * @return Collection<int, AdjustmentInterface>
+     */
     public function getAdjustments(): Collection;
 }

@@ -4,12 +4,22 @@ declare(strict_types=1);
 
 namespace Siganushka\Contracts\Order;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 trait OrderItemCollectionTrait
 {
-    private $itemsTotal = 0;
-    private $items;
+    private int $itemsTotal = 0;
+
+    /**
+     * @var Collection<int, OrderItemInterface>
+     */
+    private Collection $items;
+
+    public function __construct()
+    {
+        $this->items = new ArrayCollection();
+    }
 
     public function getItemsTotal(): int
     {

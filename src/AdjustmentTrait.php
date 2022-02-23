@@ -6,7 +6,7 @@ namespace Siganushka\Contracts\Order;
 
 trait AdjustmentTrait
 {
-    private $amount;
+    private ?int $amount = null;
 
     public function getAmount(): ?int
     {

@@ -7,10 +7,6 @@ namespace Siganushka\Contracts\Order\Tests;
 use PHPUnit\Framework\TestCase;
 use Siganushka\Contracts\Order\Tests\Fixtures\Adjustment;
 
-/**
- * @internal
- * @coversNothing
- */
 final class AdjustmentTest extends TestCase
 {
     public function testAll(): void

@@ -4,12 +4,22 @@ declare(strict_types=1);
 
 namespace Siganushka\Contracts\Order;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 trait AdjustmentCollectionTrait
 {
-    private $adjustmentsTotal = 0;
-    private $adjustments;
+    private int $adjustmentsTotal = 0;
+
+    /**
+     * @var Collection<int, AdjustmentInterface>
+     */
+    private Collection $adjustments;
+
+    public function __construct()
+    {
+        $this->adjustments = new ArrayCollection();
+    }
 
     public function getAdjustmentsTotal(): int
     {
@@ -47,7 +57,7 @@ trait AdjustmentCollectionTrait
             return $adjustment->getAmount();
         });
 
-        $this->adjustmentsTotal = array_sum($amounts->toArray());
+        $this->adjustmentsTotal = (int) array_sum($amounts->toArray());
 
         return $this;
     }

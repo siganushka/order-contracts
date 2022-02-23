@@ -15,5 +15,10 @@ interface OrderItemCollectionInterface
 {
     public function getItemsTotal(): int;
 
+    /**
+     * Undocumented function.
+     *
+     * @return Collection<int, OrderItemInterface>
+     */
     public function getItems(): Collection;
 }

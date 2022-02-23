@@ -7,17 +7,13 @@ namespace Siganushka\Contracts\Order\Tests;
 use PHPUnit\Framework\TestCase;
 use Siganushka\Contracts\Order\Tests\Fixtures\Variant;
 
-/**
- * @internal
- * @coversNothing
- */
 final class VariantTest extends TestCase
 {
     /**
      * @dataProvider validPriceProvider
      *
-     * @param mixed $price
-     * @param mixed $intPrice
+     * @param ?int $price
+     * @param ?int $intPrice
      */
     public function testAll($price, $intPrice): void
     {
@@ -37,7 +33,10 @@ final class VariantTest extends TestCase
         $variant->setPrice(-10);
     }
 
-    public function validPriceProvider()
+    /**
+     * @return array<int, array<?int>>
+     */
+    public function validPriceProvider(): array
     {
         return [
             [null, null],

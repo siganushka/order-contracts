@@ -9,10 +9,6 @@ use Siganushka\Contracts\Order\Tests\Fixtures\OrderItem;
 use Siganushka\Contracts\Order\Tests\Fixtures\OrderItemCollection;
 use Siganushka\Contracts\Order\Tests\Fixtures\Variant;
 
-/**
- * @internal
- * @coversNothing
- */
 final class OrderItemCollectionTest extends TestCase
 {
     /**
@@ -42,7 +38,10 @@ final class OrderItemCollectionTest extends TestCase
         static::assertCount(\count($arguments), $collection->getItems());
     }
 
-    public function getMockItems()
+    /**
+     * @return array<int, array<int>>
+     */
+    public function getMockItems(): array
     {
         return [
             [0, 3, 3],
