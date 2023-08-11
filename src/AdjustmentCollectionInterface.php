@@ -8,8 +8,6 @@ use Doctrine\Common\Collections\Collection;
 
 /**
  * 调整对象集合，用于调整 OrderItemCollectionInterface 中的总计，比如 减优惠、加运费等.
- *
- * @author siganushka <siganushka@gmail.com>
  */
 interface AdjustmentCollectionInterface
 {
@@ -19,4 +17,12 @@ interface AdjustmentCollectionInterface
      * @return Collection<int, AdjustmentInterface>
      */
     public function getAdjustments(): Collection;
+
+    public function addAdjustment(AdjustmentInterface $adjustment): self;
+
+    public function removeAdjustment(AdjustmentInterface $adjustment): self;
+
+    public function clearAdjustments(): self;
+
+    public function countAdjustments(): int;
 }

@@ -31,7 +31,7 @@ trait OrderItemTrait
         return $this->unitPrice;
     }
 
-    public function setUnitPrice(?int $unitPrice): void
+    public function setUnitPrice(?int $unitPrice): OrderItemInterface
     {
         throw new \BadMethodCallException('The unitPrice cannot be modified anymore.');
     }
@@ -54,6 +54,14 @@ trait OrderItemTrait
 
     public function getSubtotal(): int
     {
+        if (null === $this->unitPrice) {
+            throw new \LogicException('The unitPrice cannot be empty.');
+        }
+
+        if (null === $this->quantity) {
+            throw new \LogicException('The quantity cannot be empty.');
+        }
+
         return $this->unitPrice * $this->quantity;
     }
 }

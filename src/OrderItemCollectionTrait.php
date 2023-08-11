@@ -26,6 +26,9 @@ trait OrderItemCollectionTrait
         return $this->itemsTotal;
     }
 
+    /**
+     * @return Collection<int, OrderItemInterface>
+     */
     public function getItems(): Collection
     {
         return $this->items;
@@ -51,13 +54,22 @@ trait OrderItemCollectionTrait
         return $this;
     }
 
+    public function clearItems(): OrderItemCollectionInterface
+    {
+        $this->items->clear();
+        $this->recalculateItemsTotal();
+
+        return $this;
+    }
+
+    public function countItems(): int
+    {
+        return $this->items->count();
+    }
+
     protected function recalculateItemsTotal(): OrderItemCollectionInterface
     {
-        $subtotals = $this->items->map(function (OrderItemInterface $item) {
-            return $item->getSubtotal();
-        });
-
-        $this->itemsTotal = array_sum($subtotals->toArray());
+        $this->itemsTotal = array_reduce($this->items->toArray(), fn (int $carry, OrderItemInterface $item) => $carry + $item->getSubtotal(), 0);
 
         return $this;
     }

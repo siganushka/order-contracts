@@ -6,22 +6,29 @@ namespace Siganushka\Contracts\Order\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Siganushka\Contracts\Order\Tests\Fixtures\Variant;
+use Siganushka\Contracts\Order\VariantInterface;
 
 final class VariantTest extends TestCase
 {
     /**
      * @dataProvider validPriceProvider
-     *
-     * @param ?int $price
-     * @param ?int $intPrice
      */
-    public function testAll($price, $intPrice): void
+    public function testAll(?int $price): void
     {
         $variant = new Variant();
+        static::assertInstanceOf(VariantInterface::class, $variant);
         static::assertNull($variant->getPrice());
 
         $variant->setPrice($price);
-        static::assertSame($intPrice, $variant->getPrice());
+        static::assertSame($price, $variant->getPrice());
+    }
+
+    public function testMethods(): void
+    {
+        static::assertSame([
+            'getPrice',
+            'setPrice',
+        ], get_class_methods(new Variant()));
     }
 
     public function testPriceLessThanZeroException(): void
@@ -39,11 +46,12 @@ final class VariantTest extends TestCase
     public function validPriceProvider(): array
     {
         return [
-            [null, null],
-            [0, 0],
-            [16, 16],
-            [65535, 65535],
-            [\PHP_INT_MAX, \PHP_INT_MAX],
+            [12],
+            [null],
+            [0],
+            [16],
+            [65535],
+            [\PHP_INT_MAX],
         ];
     }
 }

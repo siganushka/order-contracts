@@ -26,6 +26,9 @@ trait AdjustmentCollectionTrait
         return $this->adjustmentsTotal;
     }
 
+    /**
+     * @return Collection<int, AdjustmentInterface>
+     */
     public function getAdjustments(): Collection
     {
         return $this->adjustments;
@@ -51,13 +54,22 @@ trait AdjustmentCollectionTrait
         return $this;
     }
 
+    public function clearAdjustments(): AdjustmentCollectionInterface
+    {
+        $this->adjustments->clear();
+        $this->recalculateAdjustmentsTotal();
+
+        return $this;
+    }
+
+    public function countAdjustments(): int
+    {
+        return $this->adjustments->count();
+    }
+
     protected function recalculateAdjustmentsTotal(): AdjustmentCollectionInterface
     {
-        $amounts = $this->adjustments->map(function (AdjustmentInterface $adjustment) {
-            return $adjustment->getAmount();
-        });
-
-        $this->adjustmentsTotal = (int) array_sum($amounts->toArray());
+        $this->adjustmentsTotal = array_reduce($this->adjustments->toArray(), fn (int $carry, AdjustmentInterface $adjustment) => $carry + (int) $adjustment->getAmount(), 0);
 
         return $this;
     }

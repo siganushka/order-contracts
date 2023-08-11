@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Siganushka\Contracts\Order\Tests;
 
 use PHPUnit\Framework\TestCase;
+use Siganushka\Contracts\Order\OrderItemCollectionInterface;
 use Siganushka\Contracts\Order\Tests\Fixtures\OrderItem;
 use Siganushka\Contracts\Order\Tests\Fixtures\OrderItemCollection;
 use Siganushka\Contracts\Order\Tests\Fixtures\Variant;
@@ -12,13 +13,14 @@ use Siganushka\Contracts\Order\Tests\Fixtures\Variant;
 final class OrderItemCollectionTest extends TestCase
 {
     /**
-     * @dataProvider getMockItems
+     * @dataProvider orderItemCollectionProvider
      */
     public function testAll(): void
     {
         $collection = new OrderItemCollection();
+        static::assertInstanceOf(OrderItemCollectionInterface::class, $collection);
         static::assertSame(0, $collection->getItemsTotal());
-        static::assertCount(0, $collection->getItems());
+        static::assertSame(0, $collection->countItems());
 
         $arguments = \func_get_args();
         $itemsTotal = array_pop($arguments);
@@ -35,13 +37,30 @@ final class OrderItemCollectionTest extends TestCase
         }
 
         static::assertSame($itemsTotal, $collection->getItemsTotal());
-        static::assertCount(\count($arguments), $collection->getItems());
+        static::assertSame(\count($arguments), $collection->countItems());
+
+        $collection->clearItems();
+        static::assertSame(0, $collection->getItemsTotal());
+        static::assertSame(0, $collection->countItems());
+    }
+
+    public function testMethods(): void
+    {
+        static::assertSame([
+            '__construct',
+            'getItemsTotal',
+            'getItems',
+            'addItem',
+            'removeItem',
+            'clearItems',
+            'countItems',
+        ], get_class_methods(new OrderItemCollection()));
     }
 
     /**
      * @return array<int, array<int>>
      */
-    public function getMockItems(): array
+    public function orderItemCollectionProvider(): array
     {
         return [
             [0, 3, 3],
